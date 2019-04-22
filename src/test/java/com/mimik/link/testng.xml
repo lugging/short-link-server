@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--
+    parallel 标识是否使用多线程
+    thread-count 标识线程数量
+
+ -->
+<suite verbose="0" name="接口测试" parallel="classes" thread-count="1">
+    <parameter name="system.info" value="com.mimik.link.listener.MySystemInfo"/>
+    <test name="* * * * 接口测试结果" preserve-order="false">
+            <parameter name="var1" value="mimik"/>
+        <classes>
+            <class name="com.mimik.link.repository.RepositoryTest">
+                <methods>
+                    <include name="testFind" description="测试查询数据"/>
+                    <include name="save" description="保存" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <listeners>
+        <!-- 测试报告监听器 -->
+        <listener class-name="com.mimik.link.listener.ExtentTestNGIReporterListener"/>
+    </listeners>
+</suite>
